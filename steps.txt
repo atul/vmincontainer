@@ -1,0 +1,17 @@
+docker run --privileged --net=host -it ulexus/qemu bash
+In container:
+lsmod | grep kvm
+apt-get -y install wget qemu-kvm libvirt-bin virtinst bridge-utils cpu-checker
+$ kvm-ok
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+$ wget http://dl-cdn.alpinelinux.org/alpine/v3.12/releases/x86_64/alpine-virt-3.12.0-x86_64.iso
+
+$ virt-install --memory=512 --vcpus=2 --cpu=host --name=alpinevm \
+ --cdrom=alpine-virt-3.12.0-x86\_64.iso \
+ --os-variant=alpinelinux3.12 \
+ --disk size=10
+ 
+ Check VM
+ $ virsh connect alpinevm
